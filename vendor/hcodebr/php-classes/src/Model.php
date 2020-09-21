@@ -13,32 +13,36 @@ class Model {
         $fieldName = substr ($name, 3, strlen($name)); // a partir do name na prosicao 3, strlen conta ate o final 
 
         switch ($method)
-        {
-            case "get":
-                return $this->values[$fieldName];
-            break;
+		{
+			case "get":
+				return (isset($this->values[$fieldName])) ? $this->values[$fieldName] : NULL;
+			break;
 
-            case "set":
-                $this->values[$fieldName] = $args[0];
-            break;
-        }
+			case "set":
+				$this->values[$fieldName] = $args[0];
+			break;
+
+		}
 
     }
 
     public function setData($data = array())
-    {
+	{
 
-        foreach ($data as $key => $value) {
-            $this->{"set".$key}($value);
-        }
+		foreach ($data as $key => $value) {
+			
+			$this->{"set".$key}($value);
 
-    }
+		}
+
+	}
 
     public function getValues()
-    {
-        return $this->values;
+	{
 
-    }
+		return $this->values;
+
+	}
 
 }
 
